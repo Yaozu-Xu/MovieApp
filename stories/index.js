@@ -1,5 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import MovieList from '../src/components/movieList';
+import FilterControls from '../src/components/filterControls';
+import MovieCard from '../src/components/movieCard';
+import MoviesHeader from '../src/components/headerMovieList';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const sample = {
@@ -82,3 +86,23 @@ const sample = {
   vote_average: 7,
   vote_count: 9692,
 };
+
+storiesOf('Home Page/MovieCard', module)
+  .add('default', () => <MovieCard movie={sample} />)
+  .add('exception', () => {
+    const sampleNoPoster = { ...sample, poster_path: undefined };
+    return <MovieCard movie={sampleNoPoster} />;
+  });
+
+storiesOf('Home Page/FilterControls', module)
+  .add('default', () => <FilterControls />);
+
+storiesOf('Home Page/Header', module).add('default', () => (
+  <MoviesHeader numMovies={10} />
+));
+
+storiesOf('Home Page/MovieList', module)
+  .add('default', () => {
+    const movies = [sample, sample, sample, sample, sample];
+    return <MovieList movies={movies} />;
+  });
