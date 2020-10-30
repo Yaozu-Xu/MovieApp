@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { getMovie } from '../api/tmdb-api'
 import MovieHeader from '../components/headerMovie';
 import MovieDetails from '../components/movieDetails';
 import './moviePage.css';
@@ -8,13 +9,10 @@ const MoviePage = (props) => {
   const { id } = props.match.params
   const [movie, setMovie] = useState(null)
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    ).then(res => res.json())    
-    .then(movie => {
+    getMovie(id).then(movie => {
       setMovie(movie);
-    })
-  }, [id])
+    });
+  }, [id]);
   return(
   <>
     {movie ? (
