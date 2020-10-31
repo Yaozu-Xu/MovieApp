@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom" 
 import FavoriteMoviesPage from './pages/favoritesMoviesPage'       // NEW
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import HomePage from "./pages/homePage";
+import SiteHeader from './components/siteHeader'
 import MovieReviewPage from "./pages/movieReviewPage";
 import MoviePage from './pages/movieDetailsPage'
 
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <BrowserRouter>
     <div className="jumbotron">
+      <SiteHeader />
       <div className="container-fluid">
         <ul className="navbar-nav text-black">
           <li className="nav-item">
