@@ -1,3 +1,6 @@
 {
-    "baseUrl": "http://localhost:3000/"
+    "baseUrl": "http://localhost:3000/",
+    "env": {
+        "TMDB_KEY": "e4229704cd049c084909155a7e0f61a8"
+    }
 }
