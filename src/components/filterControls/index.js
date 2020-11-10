@@ -9,7 +9,7 @@ const FilterControls = props => {
     getGenres().then(allGenres => {
       setGenres([genres[0], ...allGenres]);
     });
-  }, []);
+  }, [genres]);
 
   const handleChange = (e, type, value) => {
     e.preventDefault()
