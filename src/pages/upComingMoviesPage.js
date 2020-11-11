@@ -1,13 +1,12 @@
-import React from "react";
-import useUpComingMovies from '../hooks/useUpComingMovies'
+import React, {useContext} from "react";
 import AddToWatchListButton from '../components/buttons/addToWatchList'
+import {MoviesContext} from '../contexts/moviesContext'
 import PageTemplate from "../components/templateMovieListPage";
 
-const FavoriteMoviesPage = props => {
-  const { page } = props.match.params
-  const [upComingMovies] = useUpComingMovies(page)
+const UpComingMoviesPage = props => {
+  const context = useContext(MoviesContext);
+  const upComingMovies = context.upcoming
   return (
-    upComingMovies &&
     <PageTemplate
       movies={upComingMovies}
       title={"Favorite Movies"}
@@ -18,4 +17,4 @@ const FavoriteMoviesPage = props => {
   );
 };
 
-export default FavoriteMoviesPage;
+export default UpComingMoviesPage;
