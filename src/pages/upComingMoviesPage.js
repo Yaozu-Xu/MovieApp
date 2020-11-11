@@ -1,9 +1,9 @@
 import React from "react";
 import useUpComingMovies from '../hooks/useUpComingMovies'
+import AddToWatchListButton from '../components/buttons/addToWatchList'
 import PageTemplate from "../components/templateMovieListPage";
 
 const FavoriteMoviesPage = props => {
-  const toDo = () => true;
   const { page } = props.match.params
   const [upComingMovies] = useUpComingMovies(page)
   return (
@@ -11,7 +11,9 @@ const FavoriteMoviesPage = props => {
     <PageTemplate
       movies={upComingMovies}
       title={"Favorite Movies"}
-      action={toDo}
+      action={() => {
+        return <AddToWatchListButton />;
+      }}
     />
   );
 };
