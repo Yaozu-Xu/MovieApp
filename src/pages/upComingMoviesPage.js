@@ -9,9 +9,9 @@ const UpComingMoviesPage = props => {
   return (
     <PageTemplate
       movies={upComingMovies}
-      title={"Favorite Movies"}
-      action={() => {
-        return <AddToWatchListButton />;
+      title={"Upcoming Movies"}
+      action={(movie) => {
+        return <AddToWatchListButton movie={movie}/>;
       }}
     />
   );
