@@ -11,7 +11,7 @@ const FavoriteMoviesPage = props => {
     <PageTemplate
       movies={upComingMovies}
       title={"Favorite Movies"}
-      buttonHandler={toDo}
+      action={toDo}
     />
   );
 };
