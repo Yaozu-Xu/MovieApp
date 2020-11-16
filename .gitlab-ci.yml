@@ -7,15 +7,27 @@ stages:
   - build
   - test
 
+#new
+variables:
+  yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+ 
+cache:
+  key:
+    files:
+      - package.json
+  paths:
+    - .yarn
+    - cache/Cypress
+    - node_modules
+
+
 # Jobs 
 
 install_dependencies:
   stage: install
   script:
     - yarn install --frozen-lockfile
-  artifacts:
-    paths:
-      - node_modules/
 
 bundle_app:
   stage: build
