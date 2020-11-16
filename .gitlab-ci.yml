@@ -29,6 +29,13 @@ install_dependencies:
   script:
     - yarn install --frozen-lockfile
 
+build_jobX:
+  stage: build
+  only:
+      - demobranch
+  script:
+      - echo "build job X on demoBranch works"
+
 bundle_app:
   stage: build
   script:
