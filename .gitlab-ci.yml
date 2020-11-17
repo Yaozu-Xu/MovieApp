@@ -5,6 +5,7 @@ image: cypress/browsers:node12.0.0-chrome73
 stages:
   - install
   - build
+  - exercise
   - test
 
 #new
@@ -51,6 +52,13 @@ bundle_app:
   artifacts:
     paths:
       - build/
+
+exercise_job:
+  stage: exercise
+  only: 
+    - master
+  script:
+    - echo "exercise job running"
 
 e2etest:    
   stage: test
