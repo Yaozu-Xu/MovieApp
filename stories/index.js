@@ -8,6 +8,7 @@ import MovieList from "../src/components/movieList";
 import MovieDetails from "../src/components/movieDetails";
 import MovieHeader from "../src/components/headerMovie";
 import AddFavoriteButton from "../src/components/buttons/addToFavorites";
+import LoginForm from '../src/components/loginForms'
 import { MemoryRouter } from "react-router";
 import GenresContextProvider from "../src/contexts/genresContext";
 import { action } from "@storybook/addon-actions";
@@ -145,6 +146,10 @@ storiesOf("Home Page/MovieList", module)
 
 storiesOf("Movie Details Page/MovieDetails", module).add("default", () => (
   <MovieDetails movie={sample} />
+));
+
+storiesOf("Movie Login Signin Page/forms", module).add("default", () => (
+  <LoginForm />
 ));
 
 storiesOf("Movie Details Page/MovieHeader", module)
