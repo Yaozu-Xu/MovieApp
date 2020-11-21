@@ -1,0 +1,22 @@
+.form-container {
+  max-width: 300px;
+  margin: 20px auto;
+
+  .label{
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .ant-col-rtl {
+    .login-form-forgot {
+      float: left;
+    }
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-button {
+    width: 100%;
+    text-align: center;
+  }
+}
