@@ -34,10 +34,10 @@ const StarPage = (props) => {
               <List.Item.Meta
                 title={
                   <div>
-                    <a>{item.name}</a>
+                    <span>{item.name}</span>
                     <div className="container-popularity">{parseInt(item.popularity)}</div>
                     <Tooltip placement="top" title="Save your star">
-                      <HeartTwoTone  twoToneColor="#eb2f96" style={{fontSize: '20px'}}/>
+                      <HeartTwoTone twoToneColor="#eb2f96" style={{ fontSize: '20px' }} />
                     </Tooltip>
                   </div>
                 }
