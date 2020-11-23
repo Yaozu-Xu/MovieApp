@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Input, Button, Checkbox, Alert } from 'antd'
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
 import firebase from '../firebase'
@@ -8,13 +8,14 @@ import './index.scss'
 const LoginForm = () => {
   const [form] = Form.useForm()
   const [errAlert, setErrAlert] = useState(false)
+  let history = useHistory()
 
   const onFinish = (values) => {
     firebase
       .doSignInWithEmailAndPassword(values.email, values.password)
-      .then((res) => {
-       
-        })
+      .then(() => {
+        history.push('/')
+      })
       .catch((err) => {
         setErrAlert(true)
         form.resetFields()
