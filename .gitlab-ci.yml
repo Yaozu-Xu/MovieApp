@@ -10,7 +10,7 @@ stages:
 
 #new
 variables:
-  yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
  
 cache:
@@ -18,7 +18,7 @@ cache:
     files:
       - package.json
   paths:
-    - .yarn
+    - .npm
     - cache/Cypress
     - node_modules
 
@@ -28,7 +28,7 @@ cache:
 install_dependencies:
   stage: install
   script:
-    - yarn install --frozen-lockfile
+    - npm ci
 
 build_jobX:
   stage: build
@@ -49,9 +49,6 @@ bundle_app:
   stage: build
   script:
     - npm run build
-  artifacts:
-    paths:
-      - build/
 
 exercise_job:
   stage: exercise
