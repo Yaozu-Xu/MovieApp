@@ -1,0 +1,30 @@
+.container-main{
+    display: flex;
+    .container-star {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    .container-popularity {
+        display: inline-block;
+        text-align: center;
+        background-color: #ddd;
+        width: 3em;
+        height: 3em;
+        line-height: 3em;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: 50%;
+    }
+    .title-detail {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+        color: grey;
+    }
+    .pagenation-btn {
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        text-align: center;
+    }
+}

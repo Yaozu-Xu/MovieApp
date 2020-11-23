@@ -37,3 +37,11 @@ export const getMovies = () => {
     .then(res => res.json())
     .then(json => json.results);
   }
+
+  export const getMovieStars = (page=1) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=${page}`
+    )
+    .then(res => res.json())
+    .then(json => json.results)
+  } 
