@@ -7,19 +7,29 @@ const Auth = () => {
 
   useEffect(() => {
     const subscriber = firebase.onAuthChanged((res) => {
-      const { displayName, uid } = res
-      dispatch({
-        type: 'SET_USER',
-        payload: {
-          displayName,
-          uid,
-        },
-      })
+      if (res) {
+        const { displayName, uid } = res
+        dispatch({
+          type: 'SET_USER',
+          payload: {
+            displayName,
+            uid,
+          },
+        })
+        firebase.getSavedStar(uid).then(doc => {
+          if(doc.exists) {
+            dispatch({
+              type: 'SET_STAR',
+              payload: doc.data()
+            })
+          }
+        })
+      }
     })
     return () => subscriber
   })
 
-  return <></>
+  return <> </>
 }
 
 export default Auth

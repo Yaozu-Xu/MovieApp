@@ -1,14 +1,84 @@
 import React, { useState } from 'react'
 import { Button, List, Tooltip } from 'antd'
-import { HeartTwoTone } from '@ant-design/icons'
+import { useSelector, useDispatch } from 'react-redux'
+import { HeartTwoTone, HeartFilled } from '@ant-design/icons'
 import { getMovieStars } from '../../api/tmdb-api'
+import firebase from '../../components/firebase'
 import './index.scss'
 
 import { useEffect } from 'react'
 
 const StarPage = (props) => {
   const { page } = props.match.params
+  const dispatch = useDispatch()
   const [starList, setStarList] = useState()
+  const uid = useSelector((state) => state.user.uid)
+  const savedStars = useSelector((state) => state.star)
+
+  function ifSaved(id) {
+    return savedStars.stars.filter((star) => star.id === id).length > 0
+  }
+
+  function renderSavedButton(item) {
+    if (ifSaved(item.id)) {
+      return (
+        <Tooltip placement="top" title="Remove your star">
+          <HeartFilled
+            style={{ fontSize: '20px', color: 'red' }}
+            onClick={() => unSaveStar({ id: item.id, name: item.name })}
+          />
+        </Tooltip>
+      )
+    } else {
+      return (
+        <Tooltip placement="top" title="Save your star">
+          <HeartTwoTone
+            twoToneColor="#eb2f96"
+            style={{ fontSize: '20px' }}
+            onClick={() => saveStar({ id: item.id, name: item.name })}
+          />
+        </Tooltip>
+      )
+    }
+  }
+
+  function saveStar(star) {
+    if (!uid) {
+      return false
+    }
+    firebase
+      .pushStarsDocument(uid, star)
+      .then((res) => {
+        let { stars } = savedStars
+        stars.push(star)
+        const payload = { stars: stars }
+        dispatch({
+          type: 'SET_STAR',
+          payload,
+        })
+      })
+      .catch((err) => console.log(err))
+  }
+
+  function unSaveStar(star) {
+    if (!uid) {
+      return false
+    }
+    firebase
+      .removeStar(uid, star)
+      .then((res) => {
+        const index = savedStars.stars.indexOf(star)
+        let { stars } = savedStars
+        stars.splice(index, 1)
+        const payload = { stars: stars }
+        dispatch({
+          type: 'SET_STAR',
+          payload,
+        })
+      })
+      .catch((err) => console.log(err))
+  }
+
   useEffect(() => {
     async function fetchData() {
       const res = await getMovieStars(page)
@@ -28,7 +98,14 @@ const StarPage = (props) => {
             <List.Item
               key={item.name}
               extra={
-                <img width={240} height={300} alt="logo" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} />
+                <a href={'/people/' + item.id}>
+                  <img
+                    width={240}
+                    height={300}
+                    alt="logo"
+                    src={'https://image.tmdb.org/t/p/w500/' + item.profile_path}
+                  />
+                </a>
               }
             >
               <List.Item.Meta
@@ -36,9 +113,7 @@ const StarPage = (props) => {
                   <div>
                     <span>{item.name}</span>
                     <div className="container-popularity">{parseInt(item.popularity)}</div>
-                    <Tooltip placement="top" title="Save your star">
-                      <HeartTwoTone twoToneColor="#eb2f96" style={{ fontSize: '20px' }} />
-                    </Tooltip>
+                    {renderSavedButton(item)}
                   </div>
                 }
                 description={item.birth}
@@ -59,9 +134,14 @@ const StarPage = (props) => {
           )}
         />
       </div>
-      <Button shape="circle" type="primary" className="pagenation-btn">
+      <Button shape="circle" type="primary" className="pagenation-btn-right">
         <a href={'/stars/' + (parseInt(page) + 1)}>{parseInt(page) + 1}</a>
       </Button>
+      {page > 1 && (
+        <Button shape="circle" type="primary" className="pagenation-btn-left">
+          <a href={'/stars/' + (parseInt(page) - 1)}>{parseInt(page) - 1}</a>
+        </Button>
+      )}
     </div>
   )
 }

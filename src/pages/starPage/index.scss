@@ -21,9 +21,16 @@
         font-size: 0.9rem;
         color: grey;
     }
-    .pagenation-btn {
+    .pagenation-btn-right {
         position: fixed;
         right: 2rem;
+        bottom: 2rem;
+        text-align: center;
+    }
+
+    .pagenation-btn-left {
+        position: fixed;
+        left: 2rem;
         bottom: 2rem;
         text-align: center;
     }
