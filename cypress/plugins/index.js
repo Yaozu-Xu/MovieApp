@@ -19,5 +19,12 @@ const codeCoverageTask = require("@cypress/code-coverage/task");
 
 module.exports = (on, config) => {
   codeCoverageTask(on, config);
+  on('task', {
+    log(message) {
+      console.log(message) 
+      return null
+    }
+  })
   return config;
 };
+
