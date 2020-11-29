@@ -16,13 +16,13 @@ const config = {
 class Firebase {
   constructor() {
     if (!firebase.apps.length) {
-      firebase.initializeApp(config);
+      firebase.initializeApp(config)
     }
     this.auth = app.auth()
+    this.db = app.firestore()
   }
 
-  doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
+  doCreateUserWithEmailAndPassword = (email, password) => this.auth.createUserWithEmailAndPassword(email, password)
 
   doSignInWithEmailAndPassword = (email, password) => this.auth.signInWithEmailAndPassword(email, password)
 
@@ -33,6 +33,36 @@ class Firebase {
   doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email)
 
   doPasswordUpdate = (password) => this.auth.currentUser.updatePassword(password)
+
+  // Db functions
+
+  createStarsDocument = (uid, star) =>
+    this.db.collection('User').doc(uid).set({
+      stars: [star],
+    })
+
+  pushStarsDocument = (uid, star) => this.db.collection('User').doc(uid).get().then(
+    doc => {
+      if (doc.exists) {
+        this.db.collection('User').doc(uid).update({
+          stars: firebase.firestore.FieldValue.arrayUnion(star)
+        })
+      } else {
+        this.createStarsDocument(uid, star)
+      }
+    }
+  )
+
+  removeStar = (uid, star) => this.db.collection('User').doc(uid).get().then(
+    doc => {
+      if (doc.exists) {
+        this.db.collection('User').doc(uid).update({
+          stars: firebase.firestore.FieldValue.arrayRemove(star)
+        })
+      }
+    })
+
+  getSavedStar = (uid) => this.db.collection('User').doc(uid).get()
 }
 
 export default new Firebase()
