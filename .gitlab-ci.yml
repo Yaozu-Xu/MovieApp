@@ -44,3 +44,15 @@ e2etest:
   script:
     # start the server in the background
     - npm run start:ci
+    - npx cypress cache path
+    - npx cypress cache list
+    - npx nyc report --reporter=text-summary
+  artifacts:
+    when: always
+    paths:
+      # save both cypress artifacts and coverage results
+      - coverage
+    expire_in: 10 days
+  only: 
+    - staging
+    - master
