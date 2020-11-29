@@ -111,7 +111,7 @@ const StarPage = (props) => {
               <List.Item.Meta
                 title={
                   <div>
-                    <span>{item.name}</span>
+                    <span className="container-name">{item.name}</span>
                     <div className="container-popularity">{parseInt(item.popularity)}</div>
                     {renderSavedButton(item)}
                   </div>
