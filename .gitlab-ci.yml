@@ -56,3 +56,8 @@ e2etest:
   only: 
     - staging
     - master
+
+unitTest:
+  stage: test
+  script: 
+    - npm run test:unit
