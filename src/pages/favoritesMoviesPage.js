@@ -1,18 +1,22 @@
-import React, {useContext} from "react";
-import MovieListPageTemplate from "../components/templateMovieListPage";
+import React, { useContext } from 'react'
+import MovieListPageTemplate from '../components/templateMovieListPage'
+import SavedDrawer from '../components/savedDrawer'
 import AddReviewButton from '../components/buttons/addReview'
-import {MoviesContext} from '../contexts/moviesContext'
+import { MoviesContext } from '../contexts/moviesContext'
 
-const FavoriteMoviesPage = props => {
-  const context = useContext(MoviesContext);
-  const favorites = context.movies.filter( m => m.favorite )
+const FavoriteMoviesPage = (props) => {
+  const context = useContext(MoviesContext)
+  const favorites = context.movies.filter((m) => m.favorite)
   return (
-    <MovieListPageTemplate
-      movies={favorites}
-      title={"Favorite Movies"}
-      action={movie => <AddReviewButton movie={movie} />}
-    />
-  );
-};
+    <>
+      <SavedDrawer />
+      <MovieListPageTemplate
+        movies={favorites}
+        title={'Favorite Movies'}
+        action={(movie) => <AddReviewButton movie={movie} />}
+      />
+    </>
+  )
+}
 
-export default FavoriteMoviesPage;
+export default FavoriteMoviesPage
