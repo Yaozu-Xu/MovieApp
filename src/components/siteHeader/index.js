@@ -18,11 +18,6 @@ const SiteHeader = () => {
             Sign Out
           </div>
         </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-            Saved Stars
-          </a>
-        </Menu.Item>
       </Menu>
     )
     if (user.uid) {

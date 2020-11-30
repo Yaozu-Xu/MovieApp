@@ -1,0 +1,26 @@
+.toggle-btn {
+  position: fixed;
+  color: red;
+  width: 1rem;
+  height: 1rem;
+  top: 1rem;
+  text-align: center;
+}
+
+.ant-btn-icon-only.ant-btn-lg > *{
+    margin: 0 !important;
+}
+
+.ant-btn .anticon.anticon-plus > svg {
+    vertical-align: baseline;
+}
+
+.saved-container {
+  margin-top: 1rem;
+
+  .label-container {
+    margin-left: 1rem;
+    display: inline-flex;
+    align-items: center;
+  }
+}
