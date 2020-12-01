@@ -21,10 +21,11 @@ const SavedDrawer = (props) => {
         icon={<PlusOutlined />}
         onClick={() => setVisible(true)}
         size="large"
+        data-test="toggle-btn"
       />
-      <Drawer title="Saved Stars" placement="left" closable={false} onClose={() => setVisible(false)} visible={visible}>
+      <Drawer title="Saved Stars" placement="left" closable={false} onClose={() => setVisible(false)} visible={visible} data-test="side-drawer">
         {savedStars.map((star) => (
-          <Row key={star.id} className="saved-container">
+          <Row key={star.id} className="saved-container" data-test="star-container">
             <Avatar src={star.profile} size="large"></Avatar>
             <span className="label-container">{star.name}</span>
           </Row>
