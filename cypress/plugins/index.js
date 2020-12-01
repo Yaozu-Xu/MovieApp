@@ -16,9 +16,12 @@
  * @type {Cypress.PluginConfig}
  */
 const codeCoverageTask = require("@cypress/code-coverage/task");
+const admin = require("firebase-admin");
+const cypressFirebasePlugin = require("cypress-firebase").plugin;
 
 module.exports = (on, config) => {
   codeCoverageTask(on, config);
+  cypressFirebasePlugin(on, config, admin);
   on('task', {
     log(message) {
       console.log(message) 
