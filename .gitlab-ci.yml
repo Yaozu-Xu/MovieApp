@@ -46,16 +46,12 @@ e2etest:
     - npm run start:ci
     - npx cypress cache path
     - npx cypress cache list
-    - npm run cypress:verify
-    - NODE_ENV=test npm test
     - npx nyc report --reporter=text-summary
   artifacts:
     when: always
     paths:
       # save both cypress artifacts and coverage results
       - coverage
-      - cypress/videos/**/*.mp4
-      - cypress/screenshots/**/*.png
     expire_in: 10 days
   only: 
     - staging
@@ -65,3 +61,6 @@ unitTest:
   stage: test
   script: 
     - npm run test:unit
+  only:
+    - staging
+    - master
