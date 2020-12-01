@@ -61,3 +61,6 @@ unitTest:
   stage: test
   script: 
     - npm run test:unit
+  only:
+    - staging
+    - master
