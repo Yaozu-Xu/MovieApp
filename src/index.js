@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import reducers from './store'
@@ -13,15 +13,15 @@ import './globals/global.scss'
 import HomePage from './pages/homePage'
 import GenresContextProvider from './contexts/genresContext'
 import SiteHeader from './components/siteHeader'
-import MovieReviewPage from './pages/movieReviewPage'
 import MoviePage from './pages/movieDetailsPage'
 import LoginPage from './pages/loginPage'
 import Auth from './components/common/Auth'
-import SignupPage from './pages/signupPage'
 import StarPage from './pages/starPage'
-import StarDetailPage from './pages/startDetailPage'
 import firebase, { FirebaseContext } from './components/firebase'
 
+const MovieReviewPage = lazy(() => import('./pages/movieReviewPage'))
+const SignupPage = lazy(() => import('./pages/signupPage'))
+const StarDetailPage = lazy(() => import('./pages/startDetailPage'))
 const store = createStore(reducers)
 
 const App = () => {
