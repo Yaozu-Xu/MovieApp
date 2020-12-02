@@ -14,6 +14,7 @@ const LoginForm = () => {
     firebase
       .doSignInWithEmailAndPassword(values.email, values.password)
       .then(() => {
+        localStorage.setItem('login', '1')
         history.push('/')
       })
       .catch((err) => {

@@ -31,6 +31,7 @@ describe("Movie Details Page", () => {
 
   beforeEach(() => {
     cy.visit(`/`);
+    localStorage.setItem('login', '1')
     cy.get(".card").eq(2).find("img").click();
   });
 

@@ -8,6 +8,7 @@ describe('Favourite Movie Page', () => {
 
     beforeEach(() => {
         cy.visit(`/`);
+        localStorage.setItem('login', '1')
         cy.get("nav").find("li").eq(2).find("a").click();
     });
 

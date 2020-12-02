@@ -27,6 +27,7 @@ describe("Navigation", () => {
 
   describe("From the home page", () => {
     beforeEach(() => {
+      localStorage.setItem('login', '1')
       cy.visit("/");
     });
     it("should navigate to the movie details page and change browser URL", () => {
@@ -50,6 +51,10 @@ describe("Navigation", () => {
 
   describe("From the Favorites page", () => {
     beforeEach(() => {
+      cy.login(Cypress.env(
+            "TEST_UID"
+      ));
+      localStorage.setItem('login', '1')
       cy.visit("/");
     });
     it("should navigate to the movie details page and change browser URL", () => {
@@ -74,6 +79,7 @@ describe("Navigation", () => {
   describe("The Go Back button", () => {
     beforeEach(() => {
       cy.visit("/");
+      localStorage.setItem('login', '1')
     });
     it("should navigate from home page to movie details and back", () => {
       cy.get(".card").eq(1).find("img").click();

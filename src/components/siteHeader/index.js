@@ -14,7 +14,10 @@ const SiteHeader = () => {
     const overlay = (
       <Menu>
         <Menu.Item>
-          <div target="_blank" onClick={() => firebase.doSignOut().then(window.location.reload())}>
+          <div target="_blank" onClick={() => firebase.doSignOut().then((res) => {
+            localStorage.removeItem('login')
+            window.location.reload()
+            })}>
             Sign Out
           </div>
         </Menu.Item>
@@ -63,11 +66,11 @@ const SiteHeader = () => {
               Upcoming
             </Link>
           </li>
-          {user.uid && <li className="nav-item">
+          <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
               Favorites
             </Link>
-          </li>}
+          </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/stars/1">
               Stars
