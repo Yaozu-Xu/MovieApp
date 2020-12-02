@@ -14,7 +14,7 @@ const SiteHeader = () => {
     const overlay = (
       <Menu>
         <Menu.Item>
-          <div target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/" onClick={() => firebase.doSignOut().then(window.location.reload())}>
+          <div target="_blank" onClick={() => firebase.doSignOut().then(window.location.reload())}>
             Sign Out
           </div>
         </Menu.Item>
@@ -63,11 +63,11 @@ const SiteHeader = () => {
               Upcoming
             </Link>
           </li>
-          <li className="nav-item">
+          {user.uid && <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
               Favorites
             </Link>
-          </li>
+          </li>}
           <li className="nav-item">
             <Link className="nav-link text-white" to="/stars/1">
               Stars

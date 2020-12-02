@@ -30,6 +30,8 @@ class Firebase {
 
   onAuthChanged = (callback) => this.auth.onAuthStateChanged(callback)
 
+  checkLogin = () => this.auth.currentUser
+
   doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email)
 
   doPasswordUpdate = (password) => this.auth.currentUser.updatePassword(password)
