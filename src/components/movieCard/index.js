@@ -4,7 +4,7 @@ import "./movieCard.css";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MovieCard = ({movie, action}) => {
+const MovieCard = ({movie, action, hot}) => {
 
   return (
     <div className="col-sm-3">
@@ -30,6 +30,10 @@ const MovieCard = ({movie, action}) => {
             <FontAwesomeIcon icon={["fas", "star"]} />
             <span> {movie.vote_average}</span>
           </p>
+          {hot && <p>
+            <FontAwesomeIcon icon={["fas","star"]} style={{color: 'pink'}}/>
+            <span> hot</span>
+          </p>}
         </div>
         <div className="card-footer">
            {action(movie)}

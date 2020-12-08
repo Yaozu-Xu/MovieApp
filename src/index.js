@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import reducers from './store'
@@ -13,12 +13,12 @@ import HomePage from './pages/homePage'
 import GenresContextProvider from './contexts/genresContext'
 import SiteHeader from './components/siteHeader'
 import MoviePage from './pages/movieDetailsPage'
-import LoginPage from './pages/loginPage'
 import Auth from './components/common/Auth'
 import StarPage from './pages/starPage'
 import firebase, { FirebaseContext } from './components/firebase'
 import PrivatRoute from './components/common/privateRouter'
 import MovieReviewPage from './pages/movieReviewPage'
+const LoginPage = lazy(() => import('./pages/loginPage'))
 const SignupPage = lazy(() => import('./pages/signupPage'))
 const StarDetailPage = lazy(() => import('./pages/startDetailPage'))
 const store = createStore(reducers)
@@ -35,6 +35,7 @@ const App = () => {
               <MoviesContextProvider>
                 <GenresContextProvider>
                   <Auth />
+                  <Suspense fallback={<h1>loading</h1>}>
                   <Switch>
                     <Route exact path="/reviews/form" component={AddMovieReviewPage} />{' '}
                     <Route exact path="/login" component={LoginPage} />{' '}
@@ -48,6 +49,7 @@ const App = () => {
                     <Route path="/" component={HomePage} />{' '}
                     <Redirect from="*" to="/" />
                   </Switch>{' '}
+                  </Suspense>
                 </GenresContextProvider>{' '}
               </MoviesContextProvider>{' '}
             </div>{' '}
