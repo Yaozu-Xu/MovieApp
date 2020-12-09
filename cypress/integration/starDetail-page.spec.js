@@ -15,10 +15,6 @@ describe("Star page", () => {
         it('left btn should fixed at the left ', () => {
             cy.getCypressElement('left-btn').should('be.rightOf', '.right-btn')
         })
-        it('should naviagate to next page', () => {
-            cy.getCypressElement('right-btn').click({force: true})
-            cy.url().should('include', '/people')
-        })
     })
 
     describe('Star card', () => {
