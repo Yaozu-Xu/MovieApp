@@ -149,7 +149,7 @@ Tests: cypress/integration/starDetail-page.spec.js
 
 ## Testing.
 
-Cypress Dashboard URL: ... your project's dashboard URL .....
+Cypress Dashboard URL: https://dashboard.cypress.io/projects/85tn1y/
 
 ### Advanced Testing (If required).
 
