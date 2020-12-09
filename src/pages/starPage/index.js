@@ -98,7 +98,7 @@ const StarPage = (props) => {
             <List.Item
               key={item.name}
               extra={
-                <a href={'/people/' + item.id}>
+                <a href={'/people/' + item.id} data-test="poster">
                   <img
                     width={240}
                     height={300}
