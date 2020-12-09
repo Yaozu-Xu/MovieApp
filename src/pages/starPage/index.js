@@ -86,7 +86,6 @@ const StarPage = (props) => {
     }
     fetchData()
   }, [page])
-  console.log(starList)
   return (
     <div className="container-main">
       <div className="container-star">
@@ -111,7 +110,9 @@ const StarPage = (props) => {
               <List.Item.Meta
                 title={
                   <div>
-                    <span className="container-name">{item.name}</span>
+                    <a href={'/people/' + item.id} data-test="star-name">
+                      <span className="container-name">{item.name}</span>
+                    </a>     
                     <div className="container-popularity">{parseInt(item.popularity)}</div>
                     {renderSavedButton(item)}
                   </div>

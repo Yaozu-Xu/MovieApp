@@ -39,7 +39,7 @@ const StarDetailPage = (props) => {
         <Link to={'/people/' + (starDetail.id - 1)} data-test="left-btn">
           <LeftOutlined style={leftStyle} />
         </Link>
-        <Link to={'/people/' + (starDetail.id + 1)} className="right-btn" data-test="right-btn">
+        <Link to={'/people/' + (starDetail.id + 1)} data-test="right-btn" className="right-btn">
           <RightOutlined style={rightStyle} />
         </Link>
 
