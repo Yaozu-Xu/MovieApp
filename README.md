@@ -7,10 +7,10 @@ Name: YaoZu Xu
 ...... A bullet-point list of the ADDITIONAL user features you have implemented for the  Movies Fan app ......,
  
  + Feature 1 - login and signup by using firebase-auth
- + Feature 2 - save favourite star by using firebase-store
+ + Feature 2 - save and unsave favourite star by using firebase-store
  + Feature 3 - view popular stars ranked by their popularity
  + Feature 4 - view the detail of each star
- + etc
+ + Feature 5 - mark top 20 hot movies
 
 ## Setup requirements (If required).
 
@@ -20,29 +20,39 @@ I use @cypress/instrument-cra to get code coverage in cypress. This package has 
 
 ## API Data Model.
 
-..... List the additional TMDB endpoints used in your assignment, e.g.
-
 + https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=${page} - get popular movie stars
 + https://api.themoviedb.org/3/person/{person_id} - get specific person
-+ .......
++ https://api.themoviedb.org/3/trending/movie/ - get trending movies
 
 ## App Design.
 
 ### Component catalogue (If required).
 
-....... Insert a screenshot from the Storybook UI, hi-light stories relating to new/modified components you developed - see example screenshot below] .......
-
-![][stories]
-
 ### UI Design.
 
-...... Insert screenshots of the new/modified views you have added to the Movies Fan app. Include a caption for each one clearly stating its purpose and any user interaction it supports ........
+![][login]
+>  Login Pages provides form validation
 
-![][movieDetail]
->Shows detailed information on a movie. Clicking the 'Show Reviews' button will display extracts from critic reviews.
+![][signup]
+> Click the reigister now link in login page to naviagate to SignUp pages
 
-![][review]
->Shows the full text for a movie review. 
+![][trending]
+> Add a hot icon on the top 20 ranked hot movies
+
+![][star1]
+> Click the star section from header to naviagte to star page, displaying stars ranked by popluarity. Login users can save and unsave their favourite stars by clicking the red heart.
+
+![][star2]
+> Display the pagination of the star page
+
+![][star-detail-1]
+> Click the poster in the star page to navigate to star-detail page, displaying the detail of the star by using a carousel.
+
+![][favorite]
+> Add a floating button to toggle the drawer of saved stars
+
+![][saved-star]
+> The drawer that plays the saved stars, the icon of star links to the star-detail page
 
 ## Routing.
 
@@ -58,21 +68,127 @@ I use @cypress/instrument-cra to get code coverage in cypress. This package has 
 
 .... Use screenshots to illustrate where data hyperlinking is present in your views - include captions.
 
-![][cardLink]
-> Clicking a card causes the display of that movie's details.
+![][login]
+>  The reigister now hyperlinks to signup page
 
-![][reviewLink]
->Clicking the 'Full Review' for a review extract will display the full text of the review
+![][star1]
+![][star2]
+> The right float button hyperlinks to next page by changing the route params
+> The bule text is movie title that links to the movie detail page
+> The poster links to the star detail page
+
+![][star-detail-1]
+> The left and right arrow hyperlinks to previous and next page
 
 ## Independent learning (If relevant).
 
 . . . . . Briefly mention each technologies/techniques used in your project codebase that were not covered in the lectures/labs. Provide source code filename references to support your assertions and include reference material links (articles/blogs).
 
+[1] firebase-auth
+    for authentication
+    source code: ../src/components/firebase
+
+[2] firebase-store
+    source code ../src/components/firebase
+    restore user data in a document database
+
+    i encapsulate the firebase-service as a class and inject the instance into the App
+
+    reference: https://firebase.google.com/docs
+
+[3] Ant-design
+    a react ui framework that includes customized react-hooks and components
+    reference: https://ant.design/
+
+[4] sass
+    a package to compile css into extension css language
+    souce code: file with .scss extension
+    reference: https://sass-lang.com/
+
+[5] redux
+    use redux to sharing data in a sibing way
+    source: /src/store
+    reference: https://react-redux.js.org/introduction/quick-start
+
+[6] localstorage
+    use localstorage to seesion user
+
+
 ---------------------------------
 
-[model]: ./data.jpg
-[movieDetail]: ./public/movieDetail.png
-[review]: ./public/review.png
-[reviewLink]: ./public/reviewLink.png
-[cardLink]: ./public/cardLink.png
-[stories]: ./public/storybook.png
+# Assignment 1 - Agile Software Practice.
+
+Name: YaoZu Xu
+
+## App Features.
+
+[Document each new feature/page in your Movies Fan app, including: Feature Name; Its objective/purpose; The associated test file; a screenshot of its UI.]
+e,g,
+ 
++ Movie star page - Shows the top ranked movie stars and their works
+
+Tests: cypress/integration/starPage.spec.js 
+
+![][star1]
+
++ Login Page
+
+Tests: cypress/integration/login-page.spec.js 
+
+![][login]
+
++ etc
+
++ etc
+
+## Testing.
+
+Cypress Dashboard URL: ... your project's dashboard URL .....
+
+### Advanced Testing (If required).
+
+[State briefly each instances of boundary and/or error/exceptional test case in your project]
+e.g.
+
++ cypress/integration/starPage.spec.js - test the layout of elements
++ __test__/api - use jest and mock data to test api response, including the exceptions
++ __test__/store use jest to test redux
+
+## Independent learning (If relevant).
+
+[ Itemize each technologies/techniques used in your project that were not covered in the lectures/labs. Provide the necessary evidence of their use (e,g, project file names, screenshots, service URL, etc)
+
+List reference material links (articles/blogs).
+
+[1] eslint
+    use airbnb rule to linting code
+
+[2] jest
+    use jest for unit tests and api tests
+    source: ../__test__
+
+[3] code coverge for cypress 
+    source: all the configure files. In package.json, rewrite the build and start command to instrument code. in ./cypress/ configures the code coverage plugin. There are some other clues to configure it, but the files are include .gitignore.
+
+    reference: https://www.npmjs.com/package/@cypress/code-coverage
+    https://github.com/cypress-io/instrument-cra
+
+[4] third party cypress plugin 
+    cypress-layout-inspector: a package to test dom elements positions
+    cypress-firebase: a package to test firebase
+    source: ./cyress/plugins and ./cypress/support
+
+[5] customized cypress commands
+    add a command to select marked dom elemnets for testing. like data-test
+    source: ./cypress/support
+
+---------------------------------
+[login]: ./public/screenshots/login.png
+[favorite]: ./public/screenshots/favorite.png
+[saved-star]: ./public/screenshots/saved-star.png
+[signup]: ./public/screenshots/signup.png
+[star-detail-1]: ./public/screenshots/star-detail-1.png
+[star-detail-2]: ./public/screenshots/star-detail-2.png
+[star1]: ./public/screenshots/favorite.png
+[star2]: ./public/screenshots/favorite.png
+[trending]: ./public/screenshots/favorite.png
