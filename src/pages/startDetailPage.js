@@ -36,16 +36,17 @@ const StarDetailPage = (props) => {
   return (
     loaded && (
       <div className="container-main">
-        <Link to={'/people/' + (starDetail.id - 1)}>
+        <Link to={'/people/' + (starDetail.id - 1)} data-test="left-btn">
           <LeftOutlined style={leftStyle} />
         </Link>
-        <Link to={'/people/' + (starDetail.id + 1)}>
+        <Link to={'/people/' + (starDetail.id + 1)} data-test="right-btn" className="right-btn">
           <RightOutlined style={rightStyle} />
         </Link>
 
         <Card
           className="m-auto"
           hoverable
+          data-test="card"
           style={{ width: 240 }}
           cover={<img alt="star" src={'https://image.tmdb.org/t/p/w500/' + starDetail.profile_path} />}
         >
