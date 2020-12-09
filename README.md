@@ -137,9 +137,15 @@ Tests: cypress/integration/login-page.spec.js
 
 ![][login]
 
-+ etc
++ FavoriteMovie Page - Shows the saved star using a drawer
+Tests: cypress/integration/login-page.spec.js
 
-+ etc
+![][favorite]
+
++ StarDetail page - Shows the detail of the star
+Tests: cypress/integration/starDetail-page.spec.js
+
+![][star-detail-1]
 
 ## Testing.
 
@@ -152,7 +158,6 @@ e.g.
 
 + cypress/integration/starPage.spec.js - test the layout of elements
 + __test__/api - use jest and mock data to test api response, including the exceptions
-+ __test__/store use jest to test redux
 
 ## Independent learning (If relevant).
 
@@ -165,7 +170,7 @@ List reference material links (articles/blogs).
 
 [2] jest
     use jest for unit tests and api tests
-    source: ../__test__
+    source: ./__test__
 
 [3] code coverge for cypress 
     source: all the configure files. In package.json, rewrite the build and start command to instrument code. in ./cypress/ configures the code coverage plugin. There are some other clues to configure it, but the files are include .gitignore.
@@ -189,6 +194,6 @@ List reference material links (articles/blogs).
 [signup]: ./public/screenshots/signup.png
 [star-detail-1]: ./public/screenshots/star-detail-1.png
 [star-detail-2]: ./public/screenshots/star-detail-2.png
-[star1]: ./public/screenshots/favorite.png
-[star2]: ./public/screenshots/favorite.png
-[trending]: ./public/screenshots/favorite.png
+[star1]: ./public/screenshots/star2.png
+[star2]: ./public/screenshots/star1.png
+[trending]: ./public/screenshots/trending.png
