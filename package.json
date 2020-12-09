@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "test:unit": "jest --verbose ./__test__",
     "eject": "react-scripts eject",
-    "start:ci": "start-server-and-test 'http-server ./build  -p 3000' 3000 'cypress run --browser chrome'",
+    "start:ci": "start-server-and-test 'http-server ./build  -p 3000' 3000 'cypress run --browser chrome --record'",
     "lint": "eslint --ext .js --ignore-path .gitignore ."
   },
   "eslintConfig": {
