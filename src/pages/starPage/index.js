@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, List, Tooltip } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { HeartTwoTone, HeartFilled } from '@ant-design/icons'
@@ -96,12 +97,14 @@ const StarPage = (props) => {
           renderItem={(item) => (
             <List.Item
               key={item.name}
+              data-test="star-list"
               extra={
                 <a href={'/people/' + item.id} data-test="poster">
                   <img
                     width={240}
                     height={300}
                     alt="logo"
+                    data-test="star-profile"
                     src={'https://image.tmdb.org/t/p/w500/' + item.profile_path}
                   />
                 </a>
@@ -110,9 +113,9 @@ const StarPage = (props) => {
               <List.Item.Meta
                 title={
                   <div>
-                    <a href={'/people/' + item.id} data-test="star-name">
+                    <Link to={'/people/' + item.id} data-test="star-name">
                       <span className="container-name">{item.name}</span>
-                    </a>     
+                    </Link>
                     <div className="container-popularity">{parseInt(item.popularity)}</div>
                     {renderSavedButton(item)}
                   </div>
@@ -122,9 +125,10 @@ const StarPage = (props) => {
               {item.known_for.map((movie) => (
                 <List.Item.Meta
                   key={movie.id}
+                  data-test={`known-for-` + item.id}
                   title={
                     <div>
-                      <a href={'/movies/' + movie.id}>{movie.title}</a>
+                      <Link href={'/movies/' + movie.id}>{movie.title}</Link>
                       <span className="title-detail">{movie.release_date}</span>
                     </div>
                   }
@@ -136,11 +140,11 @@ const StarPage = (props) => {
         />
       </div>
       <Button shape="circle" type="primary" className="pagenation-btn-right">
-        <a href={'/stars/' + (parseInt(page) + 1)}>{parseInt(page) + 1}</a>
+        <Link to={'/stars/' + (parseInt(page) + 1)}>{parseInt(page) + 1}</Link>
       </Button>
       {page > 1 && (
         <Button shape="circle" type="primary" className="pagenation-btn-left">
-          <a href={'/stars/' + (parseInt(page) - 1)}>{parseInt(page) - 1}</a>
+          <Link to={'/stars/' + (parseInt(page) - 1)}>{parseInt(page) - 1}</Link>
         </Button>
       )}
     </div>
