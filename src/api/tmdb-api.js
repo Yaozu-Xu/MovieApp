@@ -1,6 +1,8 @@
+const baseUrl = 'https://wad-assignment2-yaozuxu.netlify.app/.netlify/functions/api'
+
 export const getMovies = () => {
     return fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
+      `${baseUrl}/movies`
     )
       .then(res => res.json())
       .then(json => json.results);
@@ -8,7 +10,7 @@ export const getMovies = () => {
   
   export const getMovie = id => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+      `${baseUrl}/movies/${id}`
     ).then(res => res.json());
   };
   
@@ -38,14 +40,6 @@ export const getMovies = () => {
     .then(json => json.results);
   }
 
-  export const getMovieStars = (page=1) => {
-    return fetch(
-      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=${page}`
-    )
-    .then(res => res.json())
-    .then(json => json.results)
-  } 
-
   export const getTrendings = () => {
     return fetch(
       `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
@@ -54,9 +48,17 @@ export const getMovies = () => {
     .then(json => json.results)
   }
 
+  export const getMovieStars = (page=1) => {
+    return fetch(
+      `${baseUrl}/stars`
+    )
+    .then(res => res.json())
+    .then(json => json.results)
+  } 
+
   export const getStarDetail = (id) => {
     return fetch(
-      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+      `${baseUrl}/stars/${id}`
     )
     .then(res => res.json())
   } 

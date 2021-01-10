@@ -58,5 +58,6 @@
     "firebase-admin": "^9.4.1",
     "istanbul-lib-coverage": "^3.0.0",
     "start-server-and-test": "1.10.6"
-  }
+  },
+  "proxy": "https://wad-assignment2-yaozuxu.netlify.app/"
 }
